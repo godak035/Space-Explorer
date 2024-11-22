@@ -10,17 +10,13 @@ public class Start implements ActionListener{
     JLabel title;
     JButton button;
     int GameState = 0;
-    static Start r;
+
         public static void main(String[] args) {
     
             SwingUtilities.invokeLater(new Runnable() {
                 public void run(){
                   
-                       r =  new Start();
-                    
-                
-               
-
+                    new Start();
             }
         });
 
