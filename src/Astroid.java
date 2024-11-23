@@ -7,21 +7,23 @@ import javax.swing.*;
 public class Astroid extends Entity{
 
     Gui gp;
-    KeyHandler keyP;
-    Timer time;
+
+
 
     public Astroid(Gui gp){
         this.gp = gp;
-        this.time = time;
+
         setDefaultValues();
 
     }
 
     public void setDefaultValues(){
         x = 1000;
-        y = 100;
+        y = (int) (Math.random() * gp.height);
         speed = 3;
     }
+
+
 
     public void update(){
       

@@ -31,6 +31,14 @@ public class Gui extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyP);
         this.setFocusable(true);
+
+        astroidTimer = new Timer(1050, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                spawnAstroid();
+
+            }
+        });
+        astroidTimer.start();
     }
 
     public void startGameThread(){
@@ -86,8 +94,21 @@ public class Gui extends JPanel implements Runnable {
     public void update(){
 
       rocket.update();
+
+      for (Astroid astroid : astroids) {
+        astroid.update();
+        
+      }
+
+      
       
 
+    }
+
+    public void spawnAstroid() {
+        // Create a new asteroid at a random position
+        Astroid newAstroid = new Astroid(this);
+        astroids.add(newAstroid);
     }
 
     public void paintComponent(Graphics g){
@@ -96,6 +117,9 @@ public class Gui extends JPanel implements Runnable {
         rocket.draw(g2);
         
         astroid.draw(g2);
+        for (Astroid astroid : astroids) {
+            astroid.draw(g2);
+        }
 
 
         g2.dispose();
