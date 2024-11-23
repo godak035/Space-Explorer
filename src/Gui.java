@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import java.util.ArrayList;
 import javax.imageio.*;
 import javax.swing.*;
 
@@ -14,6 +15,11 @@ public class Gui extends JPanel implements Runnable {
 
     KeyHandler keyP = new KeyHandler();
     Thread gameThread;
+    Rocket rocket  = new Rocket(this, keyP);
+    Astroid astroid = new Astroid(this);
+    Timer astroidTimer;
+    ArrayList <Astroid> astroids = new ArrayList<>();
+    
 
     int playerX = 100;
     int playerY = 100;
@@ -79,35 +85,18 @@ public class Gui extends JPanel implements Runnable {
 
     public void update(){
 
-        if(keyP.upPressed== true){
-            playerY-=playerSpeed;
-
-        }
-
-        if(keyP.downPressed== true){
-            playerY+=playerSpeed;
-            
-        }
-
-        if(keyP.rightPressed== true){
-            playerX+=playerSpeed;
-            
-        }
-
-        if(keyP.leftPressed== true){
-            playerX-=playerSpeed;
-            
-        }
+      rocket.update();
+      
 
     }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        rocket.draw(g2);
+        
+        astroid.draw(g2);
 
-        g2.setColor(Color.CYAN);
-
-        g2.fillRect(playerX, playerY, 50, 50);
 
         g2.dispose();
     }
