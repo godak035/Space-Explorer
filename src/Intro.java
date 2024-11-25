@@ -25,6 +25,7 @@ public class Intro extends JPanel implements ActionListener {
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setActionCommand("start");
         button.addActionListener(this);
+        button.setPreferredSize(new Dimension(150, 50));
 
         // Add components
         this.add(Box.createVerticalGlue());
