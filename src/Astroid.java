@@ -28,6 +28,11 @@ public class Astroid extends Entity{
     public void update(){
       
         x-=speed;
+
+        setBounds(x, y, 50, 50);
+
+        
+
  
     }
 

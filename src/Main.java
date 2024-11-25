@@ -15,9 +15,16 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setTitle("Space Explorer");
+        CardLayout cardLayout = new CardLayout();
+        frame.setLayout(cardLayout);
 
+        Intro intro = new Intro(frame);
         Gui gui = new Gui();
-        frame.add(gui);
+        
+        frame.getContentPane().add(intro, "Intro");
+        frame.getContentPane().add(gui, "Gui");
+
+        cardLayout.show(frame.getContentPane(), "Intro");
 
         frame.pack();
         frame.setLocationRelativeTo(null);

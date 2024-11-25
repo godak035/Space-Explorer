@@ -8,7 +8,8 @@ public class Rocket extends Entity{
 
     Gui gp;
     KeyHandler keyP;
-    
+    int width=50;
+    int height =50;
 
     public Rocket(Gui gp, KeyHandler keyp){
         this.gp = gp;
@@ -35,7 +36,7 @@ public class Rocket extends Entity{
         }
 
         if(keyP.rightPressed== true){
-            x+=speed;
+            x+=speed-1;
             
         }
 
@@ -44,13 +45,15 @@ public class Rocket extends Entity{
             
         }
 
+        setBounds(x, y, 50, 50);
+
     }
 
     public void draw(Graphics2D g2){
 
         g2.setColor(Color.CYAN);
 
-        g2.fillRect(x, y, 50, 50);
+        g2.fillRect(x, y, width, height);
 
     }
 
