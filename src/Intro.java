@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 public class Intro extends JPanel implements ActionListener {
     JFrame frame;
+    BufferedImage ship;
 
     Intro(JFrame frame) {
         System.out.println("Intro panel initialized.");

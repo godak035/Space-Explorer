@@ -145,7 +145,7 @@ public class Gui extends JPanel implements Runnable {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        rocket.draw(g2);
+        rocket.paintComponent(g2);
         
         for (Astroid astroid : astroids) {
             astroid.draw(g2);
