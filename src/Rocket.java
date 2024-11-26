@@ -11,10 +11,20 @@ public class Rocket extends Entity{
     int width=50;
     int height =50;
 
+    BufferedImage ship, rock;
     public Rocket(Gui gp, KeyHandler keyp){
         this.gp = gp;
         this.keyP = keyp;
         setDefaultValues();
+        
+        try {
+			ship = ImageIO.read(this.getClass().getResource("sprites/ship.png"));
+			rock = ImageIO.read(this.getClass().getResource("sprites/rock.png"));
+            System.out.println("Loaded images 1");
+		} catch (Exception e) {
+			System.out.println("Failed to load image.");
+		}
+        System.out.println("loaded images 2");
 
     }
 
@@ -51,9 +61,11 @@ public class Rocket extends Entity{
 
     public void draw(Graphics2D g2){
 
+        
         g2.setColor(Color.CYAN);
 
         g2.fillRect(x, y, width, height);
+        
 
     }
 
