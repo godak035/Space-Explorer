@@ -7,8 +7,13 @@ import javax.swing.*;
 public class Astroid extends Entity{
 
     Gui gp;
+    static BufferedImage rock;
+    
+        static void loadImage() {
+            rock = Gui.loadImage("src/sprites/astroid.jpg");
+        System.out.println("Image loaded");
 
-
+    }
 
     public Astroid(Gui gp){
         this.gp = gp;
@@ -41,6 +46,7 @@ public class Astroid extends Entity{
         g2.setColor(Color.RED);
 
         g2.fillRect(x, y, 50, 50);
+        g2.drawImage(rock, x, y, width, height, null);
 
     }
 

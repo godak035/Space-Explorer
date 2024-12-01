@@ -6,25 +6,22 @@ import javax.swing.*;
 
 public class Rocket extends Entity{
 
-    Gui gp;
+
     KeyHandler keyP;
-    int width=50;
+    int width=87;
     int height =50;
 
     BufferedImage ship;
-    public Rocket(Gui gp, KeyHandler keyp){
-        this.gp = gp;
+
+    void loadImages() {
+        ship = Gui.loadImage("src/sprites/rocket.png");
+        System.out.println("Image loaded");
+
+    }
+    public Rocket(KeyHandler keyp){
+
         this.keyP = keyp;
         setDefaultValues();
-        
-        try {
-			ship = ImageIO.read(this.getClass().getResource("/Users/avishan/Desktop/Space Explorer/Space-Explorer/src/sprites/ship.png"));
-            System.out.println("Loaded images 1");
-		} catch (Exception e) {
-			System.out.println("Failed to load image.");
-		}
-        System.out.println("loaded images 2");
-
     }
 
     public void setDefaultValues(){
@@ -54,7 +51,7 @@ public class Rocket extends Entity{
             
         }
 
-        setBounds(x, y, 50, 50);
+        setBounds(x, y, width, height);
 
     }
 
@@ -64,9 +61,11 @@ public class Rocket extends Entity{
         g2.setColor(Color.CYAN);
         
         
-        //g2.fillRect(x, y, width, height);
-        g2.drawImage(ship, 0,0, 100,100,null);
-        
+        g2.fillRect(x, y, width, height);
+
+        g2.drawImage(ship, x, y, width,height, null);
+
+
 
     }
 

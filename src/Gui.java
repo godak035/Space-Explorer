@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.*;
 import javax.swing.*;
@@ -15,14 +17,28 @@ public class Gui extends JPanel implements Runnable {
 
     KeyHandler keyP = new KeyHandler();
     Thread gameThread;
-    Rocket rocket  = new Rocket(this, keyP);
+    Rocket rocket  = new Rocket(keyP);
     Timer astroidTimer;
-    ArrayList <Astroid> astroids = new ArrayList<>();
+    ArrayList <Astroid> astroids = new ArrayList<Astroid>();
     
 
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
+    static BufferedImage loadImage(String filename) {
+        BufferedImage img = null;
+        try{
+            img = ImageIO.read(new File(filename));
+        } catch (IOException e) {
+            System.out.println(e.toString());
+            JOptionPane.showMessageDialog(null, "An image failed to load: " + filename, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        //DEBUG
+        //if (img == null) System.out.println("null");
+        //else System.out.printf("w=%d, h=%d%n",img.getWidth(), img.getHeight());
+        return img;
+    }
+
 
     public Gui(){
         this.setPreferredSize(new Dimension(width, height));
@@ -30,6 +46,9 @@ public class Gui extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyP);
         this.setFocusable(true);
+        rocket.loadImages();
+        Astroid.loadImage();
+
 
         astroidTimer = new Timer(250, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
