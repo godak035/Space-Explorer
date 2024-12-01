@@ -10,7 +10,7 @@ public class Astroid extends Entity{
     static BufferedImage rock;
     
         static void loadImage() {
-            rock = Gui.loadImage("src/sprites/astroid.jpg");
+            rock = Gui.loadImage("src/sprites/astroid.png");
         System.out.println("Image loaded");
 
     }
@@ -45,7 +45,7 @@ public class Astroid extends Entity{
 
         g2.setColor(Color.RED);
 
-        g2.fillRect(x, y, 50, 50);
+       // g2.fillRect(x, y, 50, 50);
         g2.drawImage(rock, x, y, width, height, null);
 
     }

@@ -61,7 +61,7 @@ public class Rocket extends Entity{
         g2.setColor(Color.CYAN);
         
         
-        g2.fillRect(x, y, width, height);
+        //g2.fillRect(x, y, width, height);
 
         g2.drawImage(ship, x, y, width,height, null);
 
