@@ -55,10 +55,10 @@ public class Settings extends JPanel implements ActionListener {
         this.setBackground(Color.BLACK); 
 
         //Create and sets up the the back button responsbile for going back to the Intro screen
-        JButton backButton = new JButton("Back");
-        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        backButton.setActionCommand("back");
-        backButton.addActionListener(this);
+        JButton back = new JButton("Back");
+        back.setAlignmentX(Component.CENTER_ALIGNMENT);
+        back.setActionCommand("back");
+        back.addActionListener(this);
 
         //Adds all the componenets to the settigns screen using a box layout
         this.add(Box.createVerticalGlue());
@@ -68,7 +68,7 @@ public class Settings extends JPanel implements ActionListener {
         this.add(blueButton);
         this.add(purpleButton);
         this.add(Box.createRigidArea(new Dimension(0, 50)));
-        this.add(backButton);
+        this.add(back);
         this.add(Box.createVerticalGlue());
     }
 
