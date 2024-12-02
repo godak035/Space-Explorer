@@ -110,6 +110,9 @@ public class Gui extends JPanel implements Runnable {
 
     }
 
+    /**
+     * runs the Game loop which is responsible for rendering and updating the features in the game
+     */
     @Override
     public void run() {
 
@@ -120,6 +123,7 @@ public class Gui extends JPanel implements Runnable {
         long timer=0;
         int drawCount =0;
     
+      //Main Game loop
         while(gameThread != null){
 
             currentTime = System.nanoTime();
