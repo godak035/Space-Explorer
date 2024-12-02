@@ -1,20 +1,26 @@
-import java.awt.*;
+/**
+ * KeyHandler.java
+ * @author Avishan
+ * 2024/12/01
+ * Handles all of they keyboard inputs
+ */
+
 import java.awt.event.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import javax.swing.*;
+
 
 public class KeyHandler implements KeyListener{
 
+    //Variables to track the state of each key to see wheater or not it was pressed
     public boolean upPressed, downPressed, leftPressed, rightPressed;
     
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
+    /**
+     * Detects if the key was pressed and sets the coorsponding varibale true
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
@@ -40,6 +46,9 @@ public class KeyHandler implements KeyListener{
         }
     }
 
+    /**
+     * Detects if the key was released and sets the coorsponding varibale false
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
@@ -62,6 +71,5 @@ public class KeyHandler implements KeyListener{
             downPressed = false;
             
         }
-    }
-    
+    } 
 }

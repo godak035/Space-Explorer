@@ -1,3 +1,9 @@
+/**
+ * Gui.java
+ * @author Avishan
+ * 2024/12/01
+ * Gui Screen
+ */
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
@@ -14,17 +20,20 @@ public class Gui extends JPanel implements Runnable {
     public final int height = 726;
 
     int FPS = 60;
-
     KeyHandler keyP = new KeyHandler();
     Thread gameThread;
     Rocket rocket  = new Rocket(keyP);
     Timer astroidTimer;
     ArrayList <Astroid> astroids = new ArrayList<Astroid>();
-    
-
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
+
+    /**
+     * Used to load images
+     * @param filename the name of the image you want to load
+     * @return the image
+     */
     static BufferedImage loadImage(String filename) {
         BufferedImage img = null;
         try{
@@ -39,7 +48,9 @@ public class Gui extends JPanel implements Runnable {
         return img;
     }
 
-
+    /**
+     * Constructor method for the GUI screen
+     */
     public Gui(){
         this.setPreferredSize(new Dimension(width, height));
         this.setBackground(Color.BLACK);
@@ -49,7 +60,7 @@ public class Gui extends JPanel implements Runnable {
         rocket.loadImages();
         Astroid.loadImage();
 
-
+        //Every time the timer goes off a new astroid is created
         astroidTimer = new Timer(250, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 spawnAstroid();
@@ -57,20 +68,23 @@ public class Gui extends JPanel implements Runnable {
 
             }
         });
-        astroidTimer.start();
     }
 
+    /**
+     * Checks to see if any of the astroids collided with the rocket
+     */
     public void checkCollision(){
         for (Astroid a : astroids) {
           if (a.intersects(rocket)){
            a.speed=a.speed*-1;
-           gameThread = null; // Stop the game thread
+           gameThread = null; 
            JOptionPane.showMessageDialog(this, "Game Over!");
            System.exit(0);            
             }
             
         }
 
+        //Keeps the rocket inside the screen
         if (rocket.x <= 0) {
             rocket.x = 0;
         }
@@ -82,14 +96,18 @@ public class Gui extends JPanel implements Runnable {
         }
         if (rocket.y >= (this.height-rocket.height)) {
             rocket.y = this.height-rocket.height;
-            System.out.println(rocket.y);
         }
     }
 
-    public void startGameThread(){
 
+    /**
+     * Creates and starts the thread responsible for the game as well as starts the astroid timer
+     */
+    public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
+        astroidTimer.start();
+
     }
 
     @Override
@@ -123,54 +141,41 @@ public class Gui extends JPanel implements Runnable {
                 timer =0;
             }
             
-            
-            
-
-            //Update
-            
-
-            //Draw
-            
-            
         }
 
     }
 
+    /**
+     * Updates the position of the rocket
+     */
     public void update(){
-
       rocket.update();
+      //To ensure that the rocket stays inbounds
       checkCollision();
-
       for (Astroid astroid : astroids) {
         astroid.update();
-        
-
-        
       }
       astroids.removeIf(astroid -> astroid.x + astroid.width < 0);
 
-
-      
-      
-
     }
 
+    //Creates a new astroid
     public void spawnAstroid() {
         // Create a new asteroid at a random position
         Astroid newAstroid = new Astroid(this);
         astroids.add(newAstroid);
     }
 
+    //Draws Everything
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        //Draws the rocket
         rocket.paintComponent(g2);
-        
+        //Draws each Astroid
         for (Astroid astroid : astroids) {
             astroid.draw(g2);
         }
-
-
         g2.dispose();
     }
 }
